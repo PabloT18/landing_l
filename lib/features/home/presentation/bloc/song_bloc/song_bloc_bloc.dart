@@ -57,7 +57,7 @@ class SongBloc extends Bloc<SongEvent, SongState> {
         state.copyWith(canciones: canciones, cancioneSeleccionada: event.song));
 
     // Reproducir la nueva canción
-    await _playSong(event.song.filePath);
+    // await _playSong(event.song.filePath);
   }
 
   Future<void> _playSong(String filePath) async {

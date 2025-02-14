@@ -1,11 +1,11 @@
 {
-    "name": "landing_l",
-    "short_name": "landing_l",
+    "name": "LyP",
+    "short_name": "LyP",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#hexcode",
-    "theme_color": "#hexcode",
-    "description": "A new Flutter project.",
+    "background_color": "#000000",
+    "theme_color": "#ffffff",
+    "description": "LyP",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
