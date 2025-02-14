@@ -34,7 +34,7 @@ Flecha en el pecho, pasión que no muere,
 cariño de león en caricia sincera.\n\n''',
               ),
               TextSpan(
-                text: 'Te Amo Siempre',
+                text: 'Te Amo Siempre\n\n',
                 style: GoogleFonts.dancingScript(
                   fontWeight: FontWeight.bold,
                   fontSize: 30,
