@@ -40,6 +40,12 @@ class ImagesAnimation extends StatelessWidget {
         ZoomAnimations(
           path: AppAssets.par9,
         ),
+        ZoomAnimations(
+          path: AppAssets.par11,
+        ),
+        ZoomAnimations(
+          path: AppAssets.par10,
+        ),
       ],
     );
   }
