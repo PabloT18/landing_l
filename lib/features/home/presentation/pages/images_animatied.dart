@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:landing_l/core/config/responsive/responsive_wid.dart';
 import 'package:landing_l/core/config/router/app_routes_assets.dart';
 import 'package:landing_l/core/config/theme/app_colors.dart';
 
@@ -19,6 +20,7 @@ class ImagesAnimation extends StatelessWidget {
         ),
         ZoomAnimations(
           path: AppAssets.par3,
+          boxfit: BoxFit.contain,
         ),
         ZoomAnimations(
           path: AppAssets.par4,
@@ -35,15 +37,20 @@ class ImagesAnimation extends StatelessWidget {
         ZoomAnimations(
           path: AppAssets.par8,
         ),
+        ZoomAnimations(
+          path: AppAssets.par9,
+        ),
       ],
     );
   }
 }
 
 class ZoomAnimations extends StatefulWidget {
-  const ZoomAnimations({super.key, required this.path});
+  const ZoomAnimations(
+      {super.key, required this.path, this.boxfit = BoxFit.cover});
 
   final String path;
+  final BoxFit boxfit;
   @override
   State<ZoomAnimations> createState() => _ZoomAnimationsState();
 }
@@ -93,46 +100,89 @@ class _ZoomAnimationsState extends State<ZoomAnimations>
     super.dispose();
   }
 
+  void _showFullImage(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) => Dialog(
+        backgroundColor: Colors.transparent,
+        child: Hero(
+          tag: widget.path,
+          child: ResponsiveWid(
+            mobile: _buildImage(context, width: 300, height: 300),
+            tablet: _buildImage(context, width: 500, height: 500),
+            desktop: _buildImage(context, width: 800, height: 800),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildImage(BuildContext context,
+      {double width = 300, double height = 300}) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
+      child: Container(
+        width: width,
+        height: height,
+        decoration: BoxDecoration(
+          color: Colors.black,
+          shape: BoxShape.rectangle,
+          // borderRadius: BorderRadius.circular(20),
+          image: DecorationImage(
+            fit: widget.boxfit,
+            image: AssetImage(widget.path),
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     var theme = Theme.of(context);
 
-    return SizedBox(
-      width: size.width / 4,
-      height: size.width / 4,
-      child: AlignTransition(
-        alignment: _alignAnimation,
-        child: CustomOutline(
-          strokeWidth: 5,
-          radius: size.width * 0.2,
-          padding: const EdgeInsets.all(5),
-          width: size.width * sizeAnimation.value,
-          height: size.width * sizeAnimation.value,
-          gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                AppColors.secondaryBlue,
-                AppColors.secondaryBlue.withOpacity(0),
-                theme.primaryColor.withOpacity(0.1),
-                theme.primaryColor
-              ],
-              stops: const [
-                0.2,
-                0.4,
-                0.6,
-                1
-              ]),
-          child: Container(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              // color: Colors.black.withOpacity(0.8),
-              color: Colors.red,
-              image: DecorationImage(
-                  fit: BoxFit.cover,
-                  alignment: Alignment.bottomLeft,
-                  image: AssetImage(widget.path)),
+    return GestureDetector(
+      onTap: () => _showFullImage(context),
+      child: Hero(
+        tag: widget.path,
+        child: SizedBox(
+          width: size.width / 4,
+          height: size.width / 4,
+          child: AlignTransition(
+            alignment: _alignAnimation,
+            child: CustomOutline(
+              strokeWidth: 5,
+              radius: size.width * 0.2,
+              padding: const EdgeInsets.all(5),
+              width: size.width * sizeAnimation.value,
+              height: size.width * sizeAnimation.value,
+              gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    AppColors.secondaryBlue,
+                    AppColors.secondaryBlue.withOpacity(0),
+                    theme.primaryColor.withOpacity(0.1),
+                    theme.primaryColor
+                  ],
+                  stops: const [
+                    0.2,
+                    0.4,
+                    0.6,
+                    1
+                  ]),
+              child: Container(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  // color: Colors.black.withOpacity(0.8),
+                  color: Colors.red,
+                  image: DecorationImage(
+                      fit: BoxFit.cover,
+                      alignment: Alignment.bottomLeft,
+                      image: AssetImage(widget.path)),
+                ),
+              ),
             ),
           ),
         ),

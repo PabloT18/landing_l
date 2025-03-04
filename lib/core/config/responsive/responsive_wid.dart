@@ -26,16 +26,6 @@ class ResponsiveWid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // var width = MediaQuery.of(context).size.width;
-    // if (width >= AppLayoutConst.ktabletwidth) {
-    //   return desktop;
-    // } else if (width < AppLayoutConst.ktabletwidth &&
-    //     width > AppLayoutConst.kmovilwidth) {
-    //   return tablet;
-    // } else {
-    //   return mobile;
-    // }
-
     return LayoutBuilder(
       builder: (context, constraints) {
         if (constraints.maxWidth > 800) {

@@ -9,6 +9,7 @@ class AppAssets {
   static const String par6 = 'assets/images/l_par6.jpeg';
   static const String par7 = 'assets/images/l_par7.jpeg';
   static const String par8 = 'assets/images/l_par8.jpeg';
+  static const String par9 = 'assets/images/l_par9.jpeg';
   static const String parcorazon = 'assets/images/l_corazon.jpeg';
   static const String lsuma = 'assets/images/l_suma.png';
 

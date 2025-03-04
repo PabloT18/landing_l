@@ -23,7 +23,6 @@ class FloatingQuickAccessBar extends StatelessWidget {
           heightFactor: 1,
           child: Padding(
             padding: EdgeInsets.only(
-              top: screenSize.height * 0.06,
               left: responsive.wp(responsive.movil ? 5 : 20),
               right: responsive.wp(responsive.movil ? 5 : 20),
             ),

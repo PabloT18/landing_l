@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:landing_l/core/config/responsive/responsive_layouts.dart';
 import 'package:landing_l/core/config/responsive/responsive_wid.dart';
 import 'package:landing_l/core/config/router/app_routes_assets.dart';
@@ -25,7 +26,6 @@ class _HomePageState extends State<HomePage> {
 
   final ScrollController _scrollController = ScrollController();
   double _scrollPosition = 0;
-  double _opacity = 0;
 
   _scrollListener() {
     setState(() {
@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
-    _opacity = _scrollPosition < screenSize.height * 0.40
+    var opacity = _scrollPosition < screenSize.height * 0.40
         ? _scrollPosition / (screenSize.height * 0.40)
         : 1;
 
@@ -64,10 +64,30 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: [
               VideoAsset(),
+              SizedBox(height: AppLayoutConst.spaceXL),
+              Text(
+                'Listado de nuestras canciones',
+                style: GoogleFonts.dancingScript(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                  color: Colors.black,
+                ),
+              ),
+
               FloatingQuickAccessBar(screenSize: screenSize),
               // FeaturedTiles(screenSize: screenSize),
               // MainCarousel(),
               SizedBox(height: AppLayoutConst.spaceXL),
+
+              Text(
+                'Nuestros momentos',
+                style: GoogleFonts.dancingScript(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 30,
+                  color: Colors.black,
+                ),
+              ),
+              SizedBox(height: AppLayoutConst.spaceM),
               ImagesAnimation(),
               ResponsiveImage(),
               PoemText(),
